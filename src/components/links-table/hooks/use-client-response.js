@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import remoteClient from '../../../utils/remote-client'
+import remoteClient from '../../../utils/remote-client';
+
+// TODO: Use axios for client call. Use remote-client object
 
 const useClientResponse = () => {
   const [error, setError] = useState(null);
