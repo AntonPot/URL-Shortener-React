@@ -16,14 +16,14 @@ const LinksTable = () => {
     return <div>Loading...</div>;
   } else {
     return (
-      <Table striped bordered hover size="sm">
+      <Table striped bordered hover size="sm" className="links-table">
         <thead>
           <tr>
             <th>Long URL</th>
             <th>Short URL</th>
-            <th>Created By</th>
             <th>Number of Clicks</th>
-            <th>Number of Countries Clicks Came From</th>
+            <th>Number of Countries</th>
+            <th>Created By</th>
           </tr>
         </thead>
 

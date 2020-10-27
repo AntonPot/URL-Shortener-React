@@ -1,0 +1,19 @@
+.new-link-form {
+  margin: auto;
+  width: 30%;
+  border: 3px solid #2e3b1b;
+  padding: 10px;
+}
+
+.app-title {
+  margin: auto;
+  width: 19%;
+  padding: 30px;
+}
+
+.links-table {
+  margin: auto;
+  width: 60%;
+  padding: 30px;
+  margin-top: 40px;
+}
