@@ -1,13 +1,10 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import useFetchLinks from './hooks/use-fetch-links'
 import LinkRow from '../link-row/link-row'
+import useFetchLinks from './hooks/use-fetch-links';
 
 const LinksTable = (props) => {
-  const {
-    error,
-    links,
-  } = useFetchLinks();
+  const {error} = useFetchLinks(props.onFetch);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -25,7 +22,7 @@ const LinksTable = (props) => {
         </thead>
 
         <tbody>
-          {links.map((link, index) => <LinkRow link={link} index={index} />)}
+          {props.links.map((link, index) => <LinkRow link={link} index={index} />)}
         </tbody>
       </Table>
     );

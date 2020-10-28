@@ -18,7 +18,7 @@ const useSubmitNewLink = () => {
       }
     };
 
-    const answer = await remoteClient.submit('/links', requestOptions);
+    await remoteClient.submit('/links', requestOptions);
   };
 
   return { handleUrlInputChange, handleSlugInputChange, handleSubmit }
