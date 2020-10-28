@@ -1,13 +1,13 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import useClientResponse from './hooks/use-client-response'
+import useFetchLinks from './hooks/use-fetch-links'
 import LinkRow from '../link-row/link-row'
 
-const LinksTable = () => {
+const LinksTable = (props) => {
   const {
     error,
     links,
-  } = useClientResponse();
+  } = useFetchLinks();
 
   if (error) {
     return <div>Error: {error.message}</div>;

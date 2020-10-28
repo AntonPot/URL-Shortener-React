@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import remoteClient from '../../../utils/remote-client';
 
-const useClientResponse = () => {
+const useFetchLinks = () => {
   const [error, setError] = useState(null);
   const [links, setLinks] = useState([]);
 
@@ -20,4 +20,4 @@ const useClientResponse = () => {
   return { error, links }
 }
 
-export default useClientResponse;
+export default useFetchLinks;
