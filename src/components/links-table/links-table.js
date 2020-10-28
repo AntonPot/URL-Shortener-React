@@ -22,7 +22,9 @@ const LinksTable = (props) => {
         </thead>
 
         <tbody>
-          {props.links.map((link, index) => <LinkRow link={link} index={index} />)}
+          {props.links.map((link, index) =>
+            <LinkRow link={link} key={index.toString()} />
+          )}
         </tbody>
       </Table>
     );

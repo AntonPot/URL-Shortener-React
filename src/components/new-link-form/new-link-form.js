@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import useSubmitNewLink from './hooks/use-submit-new-link'
 
-const NewLinkForm = () => {
-  const {
+const NewLinkForm = (props) => {
+  const [
     handleUrlInputChange,
     handleSlugInputChange,
     handleSubmit,
-  } = useSubmitNewLink();
+  ] = useSubmitNewLink(props.onSubmit);
 
   return (
     <Form className="new-link-form" onSubmit={handleSubmit}>

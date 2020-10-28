@@ -6,13 +6,13 @@ import './app.css';
 const App = () => {
   const [links, setLinks] = useState([]);
 
-  // const handleSubmit = (link) => setLinks([...links, link]);
+  const handleSubmit = (link) => setLinks([...links, link]);
   const handleFetch = (links) => setLinks(links)
 
   return (
     <div className="main">
       <h3 className="app-title">URL Shortener</h3>
-      <NewLinkForm />
+      <NewLinkForm onSubmit={handleSubmit} />
       <LinksTable onFetch={handleFetch} links={links} />
     </div>
   );

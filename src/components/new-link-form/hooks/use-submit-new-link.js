@@ -1,9 +1,9 @@
 import remoteClient from '../../../utils/remote-client';
 import { useState } from 'react';
 
-// TODO: Use remoteClient answer to update links status in App component
+// TODO: Make react update links table when new link is created
 
-const useSubmitNewLink = () => {
+const useSubmitNewLink = (assignLink) => {
   const [urlInput, setUrlInput] = useState('');
   const [slugInput, setSlugInput] = useState('');
 
@@ -17,11 +17,20 @@ const useSubmitNewLink = () => {
         slug: slugInput
       }
     };
+    
+    const resp = await remoteClient.submit('/links', requestOptions)
 
-    await remoteClient.submit('/links', requestOptions);
+    assignLink({
+      access_count: 0,
+      countreis_count: 0,
+      id: null,
+      slug: resp.slug,
+      url: resp.url,
+      user_email: 'hello@email.com',
+    });
   };
 
-  return { handleUrlInputChange, handleSlugInputChange, handleSubmit }
+  return [handleUrlInputChange, handleSlugInputChange, handleSubmit]
 }
 
 export default useSubmitNewLink;

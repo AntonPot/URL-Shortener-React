@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LinkRow = (props) => (
-  <tr key={props.index} className="link-row">
+  <tr className="link-row">
     <td>{props.link.url}</td>
     <td>{props.link.slug}</td>
     <td>{props.link.access_count}</td>
