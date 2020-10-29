@@ -7,24 +7,12 @@ const remoteClient = {
   uri: (path) => (remoteClient.host + path + '.json'),
   submit: async(path, requestOptions) => await axios
     .post(remoteClient.uri(path), requestOptions)
-    .then((response) => {
-      // console.log(response.data);
-      return response;
-    })
-    .catch((response) => {
-      // console.log(response);
-      return response.response;
-    }),
+    .then((response) => response )
+    .catch((response) => response.response) ,
   fetch: async(path, requestOptions = {}) => await axios
     .get(remoteClient.uri(path), requestOptions)
-    .then(function (response) {
-      // console.log(response.data)
-      return response;
-    })
-    .catch(function(response) {
-      // console.log(response)
-      return response.response;
-    }),
+    .then((response) => response )
+    .catch((response) => response.response ),
 };
 
 export default remoteClient;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // TODO: Make react update links table when new link is created
 
-const useSubmitNewLink = (assignLink) => {
+const useSubmitNewLink = (addLink) => {
   const [urlInput, setUrlInput] = useState('');
   const [slugInput, setSlugInput] = useState('');
 
@@ -20,7 +20,7 @@ const useSubmitNewLink = (assignLink) => {
     
     const resp = await remoteClient.submit('/links', requestOptions)
 
-    assignLink(resp.data);
+    addLink(resp.data);
   };
 
   return [handleUrlInputChange, handleSlugInputChange, handleSubmit]

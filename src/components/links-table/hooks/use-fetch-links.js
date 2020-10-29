@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import remoteClient from '../../../utils/remote-client';
 
-const useFetchLinks = (assignLinks) => {
+const useFetchLinks = (addLinks) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const useFetchLinks = (assignLinks) => {
       const resp = await remoteClient.fetch('/links')
 
       if (resp.status === 200) {
-        assignLinks(resp.data);
+        addLinks(resp.data);
       } else {
         setError(resp.data)
       }
