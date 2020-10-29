@@ -20,14 +20,7 @@ const useSubmitNewLink = (assignLink) => {
     
     const resp = await remoteClient.submit('/links', requestOptions)
 
-    assignLink({
-      access_count: 0,
-      countreis_count: 0,
-      id: null,
-      slug: resp.slug,
-      url: resp.url,
-      user_email: 'hello@email.com',
-    });
+    assignLink(resp.data);
   };
 
   return [handleUrlInputChange, handleSlugInputChange, handleSubmit]
