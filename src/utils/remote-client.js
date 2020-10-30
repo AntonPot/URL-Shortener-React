@@ -13,6 +13,10 @@ const remoteClient = {
     .get(remoteClient.uri(path), requestOptions)
     .then((response) => response )
     .catch((response) => response.response ),
+  delete: async(path, requestOptions = {}) => await axios
+    .delete(remoteClient.uri(path), requestOptions)
+    .then((response) => response)
+    .catch((response) => response.response),
 };
 
 export default remoteClient;

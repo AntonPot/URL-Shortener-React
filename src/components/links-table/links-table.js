@@ -18,12 +18,13 @@ const LinksTable = (props) => {
             <th>Number of Clicks</th>
             <th>Number of Countries</th>
             <th>Created By</th>
+            <th>Remove</th>
           </tr>
         </thead>
 
         <tbody>
-          {props.links.map((link, index) =>
-            <LinkRow link={link} key={index.toString()} />
+          {props.links.map((link) =>
+            <LinkRow link={link} key={link.id} handleDelete={props.onDelete} />
           )}
         </tbody>
       </Table>

@@ -8,12 +8,13 @@ const App = () => {
 
   const handleSubmit = (link) => setLinks([...links, link]);
   const handleFetch = (links) => setLinks(links)
+  const handleDelete = (link) => setLinks(links.filter((value) => value !== link));
 
   return (
     <div className="main">
       <h3 className="app-title">URL Shortener</h3>
       <NewLinkForm onSubmit={handleSubmit} />
-      <LinksTable onFetch={handleFetch} links={links} />
+      <LinksTable onFetch={handleFetch} onDelete={handleDelete} links={links} />
     </div>
   );
 }
