@@ -7,7 +7,7 @@ const App = () => {
   const [links, setLinks] = useState([]);
 
   const handleSubmit = (link) => setLinks([...links, link]);
-  const handleFetch = (links) => setLinks(links)
+  const handleFetch = (links) => setLinks(links);
   const handleDelete = (link) => setLinks(links.filter((value) => value !== link));
 
   return (

@@ -15,7 +15,7 @@ const useFetchLinks = (addLinks) => {
       }
     }
 
-    fetchLinks()
+    fetchLinks();
   }, [])
 
   return { error }
