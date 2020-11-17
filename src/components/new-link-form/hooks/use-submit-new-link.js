@@ -16,7 +16,7 @@ const useSubmitNewLink = (addLink) => {
       }
     };
     
-    const resp = await remoteClient.submit('/links', requestOptions)
+    const resp = await remoteClient.post('/links', requestOptions)
 
     addLink(resp.data);
   };

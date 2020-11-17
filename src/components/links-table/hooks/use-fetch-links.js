@@ -4,7 +4,7 @@ import remoteClient from '../../../utils/remote-client';
 const useFetchLinks = (addLinks) => {
   const [error, setError] = useState(null);
   const fetchLinks = async () => {
-    const resp = await remoteClient.fetch('/links')
+    const resp = await remoteClient.get('/links')
 
     if (resp.status === 200) {
       addLinks(resp.data);

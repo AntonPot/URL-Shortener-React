@@ -12,7 +12,7 @@ const useClickHandler = (link, handleDelete) => {
   };
 
   const handleLinkClick = async () => {
-    const resp = await remoteClient.fetch(`/${slug}`);
+    const resp = await remoteClient.get(`/${slug}`);
 
     setAccessCount(accessCount + 1);
     setCountriesCount(resp.data.countries_count);
