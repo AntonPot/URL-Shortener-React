@@ -4,21 +4,51 @@ import Home from '../home/home';
 import LoginForm from '../login-form/login-form.js';
 import useLoginHandler from "./hooks/use-login-handler";
 import './app.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
+const UserLoginStatus = (props) => {
+  if (props.loggedInStatus === 'LOGGED_IN') {
+    return (
+      <Navbar.Collapse className="justify-content-end">
+        <Navbar.Text className="user-login-status-text" >Signed in as: {props.user.email}</Navbar.Text>
+        <Button
+          variant="outline-primary"
+          onClick={() => props.handleLogoutClick()}
+        >Logout</Button>
+      </Navbar.Collapse>
+    )
+  } else {
+    return (
+      <Navbar.Collapse className="justify-content-end">
+        <Navbar.Text>Sign in</Navbar.Text>
+      </Navbar.Collapse>
+    )
+  }
+}
 
 const App = () => {
   const {
     loggedInStatus,
     user,
     handleLogin,
-    handleLogout
+    handleLogoutClick
   } = useLoginHandler();
 
   return (
     <div className="app">
-      <h3 className="app-title">URL Shortener</h3>
-      <h5 className="login-status">Login status: {loggedInStatus}</h5>
-      <h5 className="login-status">User email: {user.email}</h5>
+      <Container className="app-navbar-container">
+        <Navbar expand="lg" variant="light" bg="light">
+          <Navbar.Brand >URL Shortener</Navbar.Brand>
+          <Navbar.Toggle />
+          <UserLoginStatus
+            user={user}
+            loggedInStatus={loggedInStatus}
+            handleLogoutClick={handleLogoutClick}
+          />
+        </Navbar>
+      </Container>
       <BrowserRouter>
         <Switch>
           <Route
@@ -35,9 +65,9 @@ const App = () => {
           <Route
             exact
             path={'/'}
-            render={(props) => {
+            render={() => {
               if (loggedInStatus === 'LOGGED_IN') {
-                return ( <Home handleLogout={handleLogout}/>)
+                return ( <Home />)
               } else {
                 return (<Redirect to="/login" />)
               }

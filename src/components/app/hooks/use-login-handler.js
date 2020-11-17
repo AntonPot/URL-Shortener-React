@@ -4,6 +4,7 @@ import remoteClient from '../../../utils/remote-client';
 const useLoginHandler = (props) => {
   const [loggedInStatus, setLoggedInStatus] = useState('NOT_LOGGED_IN');
   const [user, setUser] = useState({});
+  const [alertMessage, setAlertMessage] = useState('');
 
   const handleLogin = (data) => {
     setLoggedInStatus('LOGGED_IN');
@@ -13,6 +14,15 @@ const useLoginHandler = (props) => {
   const handleLogout = () => {
     setLoggedInStatus('NOT_LOGGED_IN');
     setUser({});
+  };
+
+  const handleLogoutClick = async () => {
+    const response = await remoteClient.delete('/logout');
+    if (response.status === 200) {
+      handleLogout();
+    } else {
+      setAlertMessage('Something went wrong')
+    }
   };
 
   const checkLoginStatus = async () => {
@@ -27,7 +37,7 @@ const useLoginHandler = (props) => {
 
   useEffect(() => checkLoginStatus(), [])
 
-  return { loggedInStatus, user, handleLogin, handleLogout }
+  return { loggedInStatus, user, alertMessage, handleLogin, handleLogout, handleLogoutClick }
 };
 
 export default useLoginHandler;

@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import remoteClient from '../../utils/remote-client';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+
+const LoginAlert = (props) => {
+  if (props.loginErrors !== '') {
+    return (<Alert variant="warning">{props.loginErrors}</Alert>);
+  } else {
+    return ( null );
+  }
+}
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState('');
@@ -32,30 +43,21 @@ const LoginForm = (props) => {
     return (<Redirect to='/' />)
   } else {
     return (
-      <div className='login-form'>
-        <h5>{loginErrors}</h5>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='email'
-            name='email'
-            placeholder='Email'
-            autoComplete="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            autoComplete='current-password'
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-          <button type='submit'>Login</button>
-        </form>
-      </div>
+      <Form className="new-link-form" onSubmit={handleSubmit}>
+        <LoginAlert loginErrors={loginErrors} />
+        <Form.Group>
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Email" onChange={handleEmailChange} />    
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+            Login
+        </Button>
+      </Form>
     );
   };
 };
