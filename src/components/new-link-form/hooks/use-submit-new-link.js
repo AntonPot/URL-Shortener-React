@@ -1,8 +1,6 @@
 import remoteClient from '../../../utils/remote-client';
 import { useState } from 'react';
 
-// TODO: Make react update links table when new link is created
-
 const useSubmitNewLink = (addLink) => {
   const [urlInput, setUrlInput] = useState('');
   const [slugInput, setSlugInput] = useState('');

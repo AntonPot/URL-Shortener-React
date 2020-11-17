@@ -3,20 +3,17 @@ import remoteClient from '../../../utils/remote-client';
 
 const useFetchLinks = (addLinks) => {
   const [error, setError] = useState(null);
+  const fetchLinks = async () => {
+    const resp = await remoteClient.fetch('/links')
 
-  useEffect(() => {
-    const fetchLinks = async () => {
-      const resp = await remoteClient.fetch('/links')
-
-      if (resp.status === 200) {
-        addLinks(resp.data);
-      } else {
-        setError(resp.data)
-      }
+    if (resp.status === 200) {
+      addLinks(resp.data);
+    } else {
+      setError(resp.data)
     }
+  }
 
-    fetchLinks();
-  }, [])
+  useEffect(() => fetchLinks(), [])
 
   return { error }
 }
