@@ -29,7 +29,7 @@ const LoginForm = (props) => {
       }
     }
 
-    const response = await remoteClient.post('/sessions', payload);
+    const response = await remoteClient.post('/login', payload);
 
     if (response.data.logged_in) {
       props.handleLogin(response.data);

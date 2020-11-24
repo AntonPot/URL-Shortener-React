@@ -28,6 +28,8 @@ const UserLoginStatus = (props) => {
   }
 }
 
+// TODO: Add Registration and CSV download
+
 const App = () => {
   const {
     loggedInStatus,
