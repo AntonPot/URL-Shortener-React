@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../home/home';
-import LoginForm from '../login-form/login-form.js';
+import LoginForm from '../authentication-forms/login-form.js';
+import RegistrationForm from '../authentication-forms/registration-form.js';
 import useLoginHandler from "./hooks/use-login-handler";
 import './app.css';
 import Navbar from 'react-bootstrap/Navbar';
@@ -28,7 +29,7 @@ const UserLoginStatus = (props) => {
   }
 }
 
-// TODO: Add Registration and CSV download
+// TODO: Add Password reset and CSV download
 
 const App = () => {
   const {
@@ -60,6 +61,16 @@ const App = () => {
               <LoginForm
                 {...props}
                 loggedInStatus={loggedInStatus}
+                handleLogin={handleLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={'/registration'}
+            render={(props) => (
+              <RegistrationForm
+                {...props}
                 handleLogin={handleLogin}
               />
             )}
