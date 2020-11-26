@@ -22,7 +22,9 @@ const useSubmitNewLink = (addLink) => {
   };
 
   const handleDownload = async () => {
-    const response = await remoteClient.download('/downloads/new');
+    // NOTE: Use 'js-file-download' for cleaner solution
+    // https://stackoverflow.com/a/41940307/5015533
+    const response = await remoteClient.get('/downloads/new');
     const contentType = response.headers['content-type'];
     const filename = response.headers['content-disposition'].split('filename=')[1]
     const element = document.createElement("a");

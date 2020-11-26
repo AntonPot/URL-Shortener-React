@@ -20,11 +20,6 @@ const remoteClient = {
     method: 'delete',
     url: path,
   }).then((response) => response).catch((error) => error.response),
-  download: async (path) => await caller({
-    method: 'get',
-    url: path,
-    // responseType: 'blob',
-  }).then((response) => response).catch((error) => error.response),
 };
 
 export default remoteClient;
