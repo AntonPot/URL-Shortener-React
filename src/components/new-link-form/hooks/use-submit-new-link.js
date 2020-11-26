@@ -16,12 +16,26 @@ const useSubmitNewLink = (addLink) => {
       }
     };
     
-    const resp = await remoteClient.post('/links', requestOptions)
+    const response = await remoteClient.post('/links', requestOptions)
 
-    addLink(resp.data);
+    addLink(response.data);
   };
 
-  return [handleUrlInputChange, handleSlugInputChange, handleSubmit]
+  const handleDownload = async () => {
+    const response = await remoteClient.download('/downloads/new');
+    const contentType = response.headers['content-type'];
+    const filename = response.headers['content-disposition'].split('filename=')[1]
+    const element = document.createElement("a");
+    const content = new Blob([response.data], { type: contentType });
+    
+    element.href = URL.createObjectURL(content);
+    element.download = filename;
+    document.body.appendChild(element);
+    element.click();
+    element.remove();
+  };
+
+  return [handleUrlInputChange, handleSlugInputChange, handleSubmit, handleDownload]
 }
 
 export default useSubmitNewLink;

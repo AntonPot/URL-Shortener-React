@@ -27,7 +27,8 @@ const useLoginHandler = (props) => {
 
   const checkLoginStatus = async () => {
     const response = await remoteClient.get('/logged_in');
-    if (response.status !== 200
+    if ( response === undefined
+      || response.status !== 200
       || (!response.data.logged_in && loggedInStatus === 'LOGGED_IN')
     ) {
       handleLogout();

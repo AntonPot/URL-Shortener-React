@@ -1,26 +1,29 @@
 import axios from 'axios';
 
+const caller = axios.create({
+  baseURL: 'http://localhost:3001',
+  withCredentials: true
+})
+caller.defaults.headers.post['Content-Type'] = 'application/json'
+
 const remoteClient = {
-  host: 'http://localhost:3001',
-  uri: (path) => (remoteClient.host + path + '.json'),
-  post: async(path, requestPayload) => await axios({
+  post: async(path, requestPayload) => await caller({
     method: 'post',
-    url: remoteClient.uri(path),
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
+    url: path,
     data: requestPayload
   }).then((response) => response).catch((error) => error.response),
-  get: async(path) => await axios({
+  get: async(path) => await caller({
     method: 'get',
-    url: remoteClient.uri(path),
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true
+    url: path,
   }).then((response) => response).catch((error) => error.response),
-  delete: async(path) => await axios({
+  delete: async(path) => await caller({
     method: 'delete',
-    url: remoteClient.uri(path),
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true
+    url: path,
+  }).then((response) => response).catch((error) => error.response),
+  download: async (path) => await caller({
+    method: 'get',
+    url: path,
+    // responseType: 'blob',
   }).then((response) => response).catch((error) => error.response),
 };
 
