@@ -37,8 +37,6 @@ const LoginForm = (props) => {
           <Col>
           <div>
             <a href="/registration">I don't have an account</a>
-            <br />
-            <a href="/">I forgot my password</a>
           </div>
           </Col>
         </Form.Row>
